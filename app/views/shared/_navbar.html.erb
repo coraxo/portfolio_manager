@@ -37,17 +37,17 @@
         <ul
           tabindex="0"
           class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-          <li>
+          <li class="text-base-content">
             <%= link_to user_path(Current.try(:session).try(:user)), class: "justify-between" do %>
               User profile<span class="badge">New</span>
             <% end %>
           </li>
-          <li><%= link_to "User settings", edit_user_path(Current.try(:session).try(:user)) %></li>
+          <li class="text-base-content"><%= link_to "User settings", edit_user_path(Current.try(:session).try(:user)) %></li>
           <% if Current.session.user.portfolio %>
-            <li><%= link_to "Portfolio", portfolio_path(Current.try(:session).try(:user).try(:portfolio)) %></li>
-            <li><%= link_to "Portfolio settings", edit_portfolio_path(Current.try(:session).try(:user).try(:portfolio)) %></li>
+            <li class="text-base-content"><%= link_to "Portfolio", portfolio_path(Current.try(:session).try(:user).try(:portfolio)) %></li>
+            <li class="text-base-content"><%= link_to "Portfolio settings", edit_portfolio_path(Current.try(:session).try(:user).try(:portfolio)) %></li>
           <% end %>
-          <li><%= link_to "Logout", session_path, data: { "turbo-method": :delete } %></li>
+          <li class="text-base-content"><%= link_to "Logout", session_path, data: { "turbo-method": :delete } %></li>
         </ul>
       </div>
     <% else %>
