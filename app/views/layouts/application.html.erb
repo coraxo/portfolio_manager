@@ -23,9 +23,9 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
   </head>
 
-  <body class="flex flex-col min-h-screen">
+  <body class="flex flex-col min-h-screen bg-gray-700">
     <%= render 'shared/navbar' %>
-    <main class="container my-auto mx-auto px-5 flex">
+    <main class="container mx-auto px-5 flex max-w-screen-xl mx-auto flex-grow items-center bg-base-100 px-4 py-8">
       <%= yield %>
     </main>
     <%= render 'shared/footer' %>
