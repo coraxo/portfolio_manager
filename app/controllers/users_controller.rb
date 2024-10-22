@@ -26,7 +26,7 @@ class UsersController < ApplicationController
   def edit
     if Current.session.user.id != @user.id
       respond_to do |format|
-        format.html { redirect_to @user, notice: 'Cannot edit other user.' }
+        format.html { redirect_to user_path(@user), notice: 'Cannot edit other user.' }
         format.json { render json: { 'error': 'Access denied' }, status: :forbidden }
       end
     end
@@ -35,7 +35,7 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to @user, notice: "User settings successfully updated." }
+        format.html { redirect_to user_path(@user), notice: "User settings successfully updated." }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit, status: :unprocessable_entity }

@@ -6,6 +6,9 @@
 
     <% if !@user.portfolio %>
       <p>User portfolio not found</p>
+      <% if authenticated? && Current.session.user.id == @user.id %>
+        <%= link_to "Create portfolio settings", new_portfolio_path %>
+      <% end %>
     <% else %>
       <%= render @user %>
 

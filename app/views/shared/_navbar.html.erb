@@ -43,8 +43,10 @@
             <% end %>
           </li>
           <li><%= link_to "User settings", edit_user_path(Current.try(:session).try(:user)) %></li>
-          <li><%= link_to "Portfolio", portfolio_path(Current.try(:session).try(:user).try(:portfolio)) %></li>
-          <li><%= link_to "Portfolio settings", edit_portfolio_path(Current.try(:session).try(:user).try(:portfolio)) %></li>
+          <% if Current.session.user.portfolio %>
+            <li><%= link_to "Portfolio", portfolio_path(Current.try(:session).try(:user).try(:portfolio)) %></li>
+            <li><%= link_to "Portfolio settings", edit_portfolio_path(Current.try(:session).try(:user).try(:portfolio)) %></li>
+          <% end %>
           <li><%= link_to "Logout", session_path, data: { "turbo-method": :delete } %></li>
         </ul>
       </div>

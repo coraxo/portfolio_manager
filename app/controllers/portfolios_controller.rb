@@ -13,23 +13,24 @@ class PortfoliosController < ApplicationController
 
   def create
     @portfolio = Portfolio.new(portfolio_params)
-    @portfolio.user = Current.session.user
+    user = Current.session.user
 
-    if @user.portfolio
+    if user.portfolio
       respond_to do |format|
-        format.html { redirect_to @user.portfolio, notice: 'Portfolio creation failed, portfolio already exists' }
+        format.html { redirect_to portfolio_path(user.portfolio), notice: 'Portfolio creation failed, portfolio already exists' }
         format.json { render json: { 'error': 'Portfolio already exists' }, status: :unprocessable_entity }
       end
-    end
-
-    respond_to do |format|
-      if @portfolio.save
-        format.html { redirect_to @portfolio, notice: 'Portfolio was successfully created' }
-        format.json { render :show, status: :created, location: @portfolio }
-      else
-        format.html { render :new, status: :unprocessable_entity  }
-        format.json { render json: { 'error': 'Could not create portfolio' }, status: :unprocessable_entity }
-       end
+    else
+      @portfolio.user = user
+      respond_to do |format|
+        if @portfolio.save
+          format.html { redirect_to portfolio_path(@portfolio), notice: 'Portfolio was successfully created' }
+          format.json { render :show, status: :created, location: @portfolio }
+        else
+          format.html { render :new, status: :unprocessable_entity  }
+          format.json { render json: { 'error': 'Could not create portfolio' }, status: :unprocessable_entity }
+        end
+      end
     end
   end
 
@@ -39,7 +40,7 @@ class PortfoliosController < ApplicationController
   def edit
     if Current.session.user.id != @portfolio.user.id
       respond_to do |format|
-        format.html { redirect_to @portfolio, notice: 'Cannot edit other user\'s profile.' }
+        format.html { redirect_to portfolio_path(@portfolio), notice: 'Cannot edit other user\'s profile.' }
         format.json { render json: { 'error': 'Access denied' }, status: :forbidden }
       end
     end
@@ -48,7 +49,7 @@ class PortfoliosController < ApplicationController
   def update
     respond_to do |format|
       if @portfolio.update(portfolio_params)
-        format.html { redirect_to @portfolio, notice: "Portfolio settings successfully updated." }
+        format.html { redirect_to portfolio_path(@portfolio), notice: "Portfolio settings successfully updated." }
         format.json { render :show, status: :ok, location: @portfolio }
       else
         format.html { render :edit, status: :unprocessable_entity }
