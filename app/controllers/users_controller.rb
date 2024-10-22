@@ -25,6 +25,12 @@ class UsersController < ApplicationController
   end
 
   def edit
+    if Current.session.user.id != @user.id
+      respond_to do |format|
+        format.html { redirect_to @user, notice: 'Cannot edit other user.' }
+        format.json { render json: { 'error': 'Access denied' }, status: :forbidden }
+      end
+    end
   end
 
   def update
