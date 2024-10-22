@@ -12,9 +12,15 @@ class PortfoliosController < ApplicationController
   end
 
   def create
-    params.permit!
     @portfolio = Portfolio.new(portfolio_params)
     @portfolio.user = Current.session.user
+
+    if @user.portfolio
+      respond_to do |format|
+        format.html { redirect_to @user.portfolio, notice: 'Portfolio creation failed, portfolio already exists' }
+        format.json { render json: { 'error': 'Portfolio already exists' }, status: :unprocessable_entity }
+      end
+    end
 
     respond_to do |format|
       if @portfolio.save
@@ -40,6 +46,15 @@ class PortfoliosController < ApplicationController
   end
 
   def update
+    respond_to do |format|
+      if @portfolio.update(portfolio_params)
+        format.html { redirect_to @portfolio, notice: "Portfolio settings successfully updated." }
+        format.json { render :show, status: :ok, location: @portfolio }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @portfolio.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   private
@@ -49,6 +64,10 @@ class PortfoliosController < ApplicationController
     end
 
     def portfolio_params
-      params.fetch(:portfolio, {})
+      params.require(:portfolio).permit(
+        :title,
+        :introduction,
+        :description
+      )
     end
 end

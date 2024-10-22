@@ -7,7 +7,6 @@ class UsersController < ApplicationController
   end
 
   def create
-    params.permit!
     @user = User.new(user_params)
 
     respond_to do |format|
@@ -34,6 +33,15 @@ class UsersController < ApplicationController
   end
 
   def update
+    respond_to do |format|
+      if @user.update(user_params)
+        format.html { redirect_to @user, notice: "User settings successfully updated." }
+        format.json { render :show, status: :ok, location: @user }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   private
@@ -43,6 +51,9 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      params.fetch(:user, {})
+      params.require(:user).permit(
+        :email_address,
+        :password
+      )
     end
 end
