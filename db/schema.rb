@@ -18,7 +18,7 @@ ActiveRecord::Schema[8.1].define(version: 2024_10_22_185604) do
     t.string "title"
     t.text "introduction"
     t.text "description"
-    t.bigint "user_id"
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_portfolios_on_user_id"
@@ -41,5 +41,6 @@ ActiveRecord::Schema[8.1].define(version: 2024_10_22_185604) do
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
   end
 
+  add_foreign_key "portfolios", "users"
   add_foreign_key "sessions", "users"
 end

@@ -39,10 +39,12 @@
           class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
           <li>
             <%= link_to user_path(Current.try(:session).try(:user)), class: "justify-between" do %>
-              Profile<span class="badge">New</span>
+              User profile<span class="badge">New</span>
             <% end %>
           </li>
-          <li><%= link_to "Settings", edit_user_path(Current.try(:session).try(:user)) %></li>
+          <li><%= link_to "User settings", edit_user_path(Current.try(:session).try(:user)) %></li>
+          <li><%= link_to "Portfolio", portfolio_path(Current.try(:session).try(:user).try(:portfolio)) %></li>
+          <li><%= link_to "Portfolio settings", edit_portfolio_path(Current.try(:session).try(:user).try(:portfolio)) %></li>
           <li><%= link_to "Logout", session_path, data: { "turbo-method": :delete } %></li>
         </ul>
       </div>
