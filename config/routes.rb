@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resource :session
   resources :passwords, param: :token
-  resources :users, except: [:index, :destroy]
+  resources :users, except: [ :index, :destroy ]
   resources :portfolios, except: []
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

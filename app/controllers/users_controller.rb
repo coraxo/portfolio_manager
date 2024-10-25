@@ -11,12 +11,12 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to new_portfolio_path, notice: 'User was successfully created. Please log in and create your portfolio now.' }
+        format.html { redirect_to new_portfolio_path, notice: "User was successfully created. Please log in and create your portfolio now." }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new, status: :unprocessable_entity  }
-        format.json { render json: { 'error': 'Could not create user' }, status: :unprocessable_entity }
-       end
+        format.json { render json: { 'error': "Could not create user" }, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -26,8 +26,8 @@ class UsersController < ApplicationController
   def edit
     if Current.session.user.id != @user.id
       respond_to do |format|
-        format.html { redirect_to user_path(@user), notice: 'Cannot edit other user.' }
-        format.json { render json: { 'error': 'Access denied' }, status: :forbidden }
+        format.html { redirect_to user_path(@user), notice: "Cannot edit other user." }
+        format.json { render json: { 'error': "Access denied" }, status: :forbidden }
       end
     end
   end
