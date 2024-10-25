@@ -10,11 +10,7 @@
       <%= render @portfolio %>
 
       <% if authenticated? && Current.session.user.id == @portfolio.user.id %>
-        <%= link_to "Edit portfolio", edit_portfolio_path(@portfolio), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-        <%= link_to "Back to portfolios", portfolios_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-        <div class="inline-block ml-2">
-          <%= button_to "Destroy portfolio", @portfolio, method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
-        </div>
+        <%= link_to "Edit portfolio", edit_portfolio_path(@portfolio), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium text-center w-full xs:w-1/2" %>
       <% end %>
     <% end %>
   </div>
