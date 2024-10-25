@@ -10,7 +10,7 @@
       <%= render @portfolio %>
 
       <% if authenticated? && Current.session.user.id == @portfolio.user.id %>
-        <%= link_to "Edit portfolio", edit_portfolio_path(@portfolio), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium text-center w-full xs:w-1/2" %>
+        <%= link_to "Edit portfolio", edit_portfolio_path(@portfolio), class: "link-button mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium text-center w-full xs:w-1/2" %>
       <% end %>
     <% end %>
   </div>

@@ -13,7 +13,7 @@
       <%= render @user %>
 
       <% if authenticated? && Current.session.user.id == @user.id %>
-        <%= link_to "Edit user settings", edit_user_path(@user), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+        <%= link_to "Edit user settings", edit_user_path(@user), class: "link-button mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
       <% end %>
     <% end %>
   </div>

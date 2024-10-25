@@ -3,3 +3,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+a:not(.link-button):not(.navbar a) {
+  text-decoration: underline;
+  color: #4F8BBF;
+  &:hover {
+    color: #3A6F98;
+  }
+}
+
+ul {
+  @apply list-disc list-inside pl-5;
+}
+
+ol {
+  @apply list-decimal list-inside pl-5;
+}
