@@ -86,6 +86,7 @@ production:
     database: portfolio_manager_production
     username: portfolio_manager
     password: <%= ENV["DB_PASSWORD"] %>
+    host: db
   cache:
     <<: *primary_production
     database: portfolio_manager_production_cache
