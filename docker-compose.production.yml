@@ -20,7 +20,7 @@ services:
       DB_PASSWORD: "${DB_PASSWORD}"
       DATABASE_URL: "postgresql://portfolio_manager:${DB_PASSWORD}@db:5432/portfolio_manager_production"
     ports:
-      - "80:80"
+      - "3001:80"
     depends_on:
       - db
     networks:
