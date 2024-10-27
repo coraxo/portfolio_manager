@@ -42,7 +42,7 @@ class PortfolioItemsController < ApplicationController
 
     respond_to do |format|
       if @portfolio_item.save
-        format.html { redirect_to @portfolio_item, notice: 'Portfolio item was successfully created.' }
+        format.html { redirect_to @portfolio_item, notice: "Portfolio item was successfully created." }
         format.json { render json: @portfolio_item, status: :created, location: @portfolio_item }
       else
         format.html { render action: "new", status: :unprocessable_entity }
@@ -61,7 +61,7 @@ class PortfolioItemsController < ApplicationController
 
     respond_to do |format|
       if @portfolio_item.update(portfolio_item_params)
-        format.html { redirect_to @portfolio_item, notice: 'Portfolio item was successfully updated.' }
+        format.html { redirect_to @portfolio_item, notice: "Portfolio item was successfully updated." }
         format.json { head :no_content }
       else
         format.html { render action: "edit", status: :unprocessable_entity }
