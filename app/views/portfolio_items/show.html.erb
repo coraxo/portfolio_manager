@@ -1,0 +1,17 @@
+<div class="mx-auto md:w-2/3 w-full flex">
+  <div class="mx-auto">
+    <% if notice.present? %>
+      <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+    <% end %>
+
+    <% if !@portfolio_item %>
+      <p>Portfolio item not found</p>
+    <% else %>
+      <%= render @portfolio_item %>
+
+      <% if authenticated? && Current.session.user.id == @portfolio_item.portfolio.user.id %>
+        <%= link_to "Edit portfolio item", edit_portfolio_item_path(@portfolio_item), class: "link-button mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium text-center w-full xs:w-1/2" %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

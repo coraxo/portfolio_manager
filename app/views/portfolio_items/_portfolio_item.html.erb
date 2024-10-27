@@ -1,0 +1,12 @@
+<div id="<%= dom_id portfolio_item %>">
+  <h1 class="font-bold text-4xl"><%= @portfolio_item.title %></h1>
+  <p class="py-6"><%= @portfolio_item.description %></p>
+  <% if @portfolio_item.url.present? %>
+    <p>Visit the site:</p>
+    <a href="<%= @portfolio_item.url %>" target="_blank">Visit site</a>
+  <% end %>
+  <% if @portfolio_item.repository_url.present? %>
+    <p>Visit the repository:</p>
+    <a href="<%= @portfolio_item.repository_url %>" target="_blank">Visit repository</a>
+  <% end %>
+</div>

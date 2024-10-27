@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2024_10_25_195343) do
+ActiveRecord::Schema[8.1].define(version: 2024_10_27_210241) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -52,6 +52,17 @@ ActiveRecord::Schema[8.1].define(version: 2024_10_25_195343) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "portfolio_items", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.string "url"
+    t.string "repository_url"
+    t.bigint "portfolio_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["portfolio_id"], name: "index_portfolio_items_on_portfolio_id"
+  end
+
   create_table "portfolios", force: :cascade do |t|
     t.string "title"
     t.text "introduction"
@@ -81,6 +92,7 @@ ActiveRecord::Schema[8.1].define(version: 2024_10_25_195343) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "portfolio_items", "portfolios"
   add_foreign_key "portfolios", "users"
   add_foreign_key "sessions", "users"
 end

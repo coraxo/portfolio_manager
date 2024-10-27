@@ -4,6 +4,10 @@ class PortfoliosController < ApplicationController
 
   def index
     @portfolios = Portfolio.all
+    respond_to do |format|
+      format.html
+      format.json { render json: @portfolios }
+    end
   end
 
   def new
@@ -35,6 +39,10 @@ class PortfoliosController < ApplicationController
   end
 
   def show
+    respond_to do |format|
+      format.html
+      format.json { render json: @portfolio }
+    end
   end
 
   def edit
@@ -47,6 +55,13 @@ class PortfoliosController < ApplicationController
   end
 
   def update
+    if Current.session.user.id != @portfolio.user.id
+      respond_to do |format|
+        format.html { redirect_to portfolio_path(@portfolio), notice: "Cannot edit other user's profile." }
+        format.json { render json: { 'error': "Access denied" }, status: :forbidden }
+      end
+    end
+
     respond_to do |format|
       if @portfolio.update(portfolio_params)
         format.html { redirect_to portfolio_path(@portfolio), notice: "Portfolio settings successfully updated." }

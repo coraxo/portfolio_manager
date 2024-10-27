@@ -2,4 +2,7 @@
   <h1 class="font-bold text-4xl"><%= @portfolio.title %></h1>
   <p class="text-3xl font-bold pt-16"><%= @portfolio.introduction %></p>
   <p class="py-6"><%= @portfolio.description %></p>
+  <% @portfolio.portfolio_items.each do |portfolio_item| %>
+    <%= render partial: 'portfolio_items/portfolio_item_list_item', locals: { portfolio_item: portfolio_item } %>
+  <% end %>
 </div>

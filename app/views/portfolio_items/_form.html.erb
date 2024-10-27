@@ -1,0 +1,36 @@
+<%= form_with(model: portfolio_item, class: "contents") do |form| %>
+  <% if portfolio_item.errors.any? %>
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+      <h2><%= pluralize(portfolio_item.errors.count, "error") %> prohibited portfolio item from being saved:</h2>
+
+      <ul>
+        <% portfolio_item.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <h2>Portfolio item title</h2>
+  <div class="w-full sm:w-4/5">
+    <%= form.text_field :title, required: true, autofocus: true, autocomplete: "title", placeholder: "Title for portfolio item", value: portfolio_item.title || params[:title], class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-6 w-full" %>
+  </div>
+
+  <h2>Portfolio item URL</h2>
+  <div class="w-full sm:w-4/5">
+    <%= form.text_field :url, required: true, autofocus: true, autocomplete: "url", placeholder: "URL for portfolio item", value: portfolio_item.url || params[:url], class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-6 w-full" %>
+  </div>
+
+  <h2>Portfolio item repository URL</h2>
+  <div class="w-full sm:w-4/5">
+    <%= form.text_field :repository_url, required: true, autofocus: true, autocomplete: "repository_url", placeholder: "Repository URL for portfolio item", value: portfolio_item.repository_url || params[:repository_url], class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-6 w-full" %>
+  </div>
+
+  <h2>Full rich text description</h2>
+  <%= form.rich_text_area :description %>
+
+  <div class="flex flex-col xs:flex-row mt-6 items-center gap-y-2 xs:gap-x-2 sm:w-4/5">
+    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white font-medium cursor-pointer justify-self-center w-full" %>
+    <%= link_to "Show portfolio", @portfolio, class: "link-button rounded-lg py-3 px-5 bg-gray-100 inline-block text-center font-medium w-full" %>
+  </div>
+<% end %>
