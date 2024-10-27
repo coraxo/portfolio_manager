@@ -83,7 +83,10 @@ jobs:
           name: screenshots
           path: ${{ github.workspace }}/tmp/screenshots
           if-no-files-found: ignore
+
   deploy:
+    runs-on: ubuntu-latest
+
     steps:
       - name: Deploy to hetzner instance
         shell: bash
