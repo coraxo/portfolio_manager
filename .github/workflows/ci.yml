@@ -97,5 +97,5 @@ jobs:
           eval $(ssh-agent -s)
           ssh-add ~/.ssh/id_rsa
           ssh-keyscan -H "${{ secrets.HETZNER_URL }}" >> ~/.ssh/known_hosts
-          ssh -o StrictHostKeyChecking=no "${{ secrets.HETZNER_USERNAME }}"@"${{ secrets.HETZNER_URL  }}" "cd /home/portfolio-manager/portfolio_manager && git pull && docker compose -f docker-compose.production.yml up -d --build"
+          ssh -o StrictHostKeyChecking=no "${{ secrets.HETZNER_USERNAME }}"@"${{ secrets.HETZNER_URL  }}" "cd /home/portfolio-manager/portfolio_manager && git pull && source /home/portfolio-manager/.bashrc && docker compose -f docker-compose.production.yml up -d --build"
 
