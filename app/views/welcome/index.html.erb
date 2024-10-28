@@ -1,13 +1,15 @@
-<div class="hero bg-base-200 min-h-80">
-  <div class="hero-content text-center">
-    <div>
-      <h1 class="text-5xl font-bold">Portfolio manager</h1>
-
-      <h2 class="text-3xl font-bold pt-16">Welcome!</h2>
-      <p class="py-6">You can create and manage your own tech portfolio easily using this app.</p>
-
+<div
+  class="hero flex-grow overflow-y-auto"
+  style="background-image: url(https://img.daisyui.com/images/stock/photo-1507358522600-9f71e620c44e.webp);">
+  <div class="hero-overlay bg-opacity-60"></div>
+  <div class="hero-content text-neutral-content text-center">
+    <div class="max-w-md">
+      <h1 class="mb-5 text-5xl font-bold">Welcome!</h1>
+      <p class="mb-5">
+        You can create and manage your own tech portfolio easily using this app.
+      </p>
       <% unless authenticated? %>
-        <a class="btn" href="/users/new">Sign up</a>
+        <a class="btn btn-primary link-button" href="/users/new">Sign up</a>
       <% end %>
     </div>
   </div>

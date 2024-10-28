@@ -11,26 +11,46 @@
     </div>
   <% end %>
 
-  <h2>Portfolio item title</h2>
-  <div class="w-full sm:w-4/5">
-    <%= form.text_field :title, required: true, autofocus: true, autocomplete: "title", placeholder: "Title for portfolio item", value: portfolio_item.title || params[:title], class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-6 w-full" %>
+  <label class="form-control w-full max-w-xs mt-12">
+    <div class="label">
+      <span class="label-text">Portfolio item title</span>
+    </div>
+    <div class="w-full sm:w-4/5">
+      <%= form.text_field :title, required: true, autofocus: true, autocomplete: "title", placeholder: "Title for portfolio item", value: portfolio_item.title || params[:title], class: "input input-bordered w-full max-w-xs" %>
+    </div>
+  </label>
+
+  <label class="form-control w-full max-w-md mt-8">
+    <div class="label">
+      <span class="label-text">Portfolio item url</span>
+    </div>
+    <div class="w-full sm:w-4/5">
+      <%= form.text_field :url, required: true, autofocus: true, autocomplete: "url", placeholder: "URL for portfolio item", value: portfolio_item.url || params[:url], class: "input input-bordered w-full max-w-md" %>
+    </div>
+  </label>
+
+  <label class="form-control w-full max-w-md mt-8">
+    <div class="label">
+      <span class="label-text">Portfolio item repository url</span>
+    </div>
+    <div class="w-full sm:w-4/5">
+      <%= form.text_field :repository_url, required: true, autofocus: true, autocomplete: "repository_url", placeholder: "Repository URL for portfolio item", value: portfolio_item.repository_url || params[:repository_url], class: "input input-bordered w-full max-w-md" %>
+    </div>
+  </label>
+
+  <div class="flex w-full flex-col">
+    <div class="divider divider-default mt-12 md:mt-16"></div>
   </div>
 
-  <h2>Portfolio item URL</h2>
-  <div class="w-full sm:w-4/5">
-    <%= form.text_field :url, required: true, autofocus: true, autocomplete: "url", placeholder: "URL for portfolio item", value: portfolio_item.url || params[:url], class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-6 w-full" %>
-  </div>
-
-  <h2>Portfolio item repository URL</h2>
-  <div class="w-full sm:w-4/5">
-    <%= form.text_field :repository_url, required: true, autofocus: true, autocomplete: "repository_url", placeholder: "Repository URL for portfolio item", value: portfolio_item.repository_url || params[:repository_url], class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-6 w-full" %>
-  </div>
-
-  <h2>Full rich text description</h2>
+  <label class="form-control w-full max-w-xs mt-6 mb-4">
+    <div class="label">
+      <span class="label-text text-lg">Full rich text description</span>
+    </div>
+  </label>
   <%= form.rich_text_area :description %>
 
-  <div class="flex flex-col xs:flex-row mt-6 items-center gap-y-2 xs:gap-x-2 sm:w-4/5">
-    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white font-medium cursor-pointer justify-self-center w-full" %>
-    <%= link_to "Show portfolio", @portfolio, class: "link-button rounded-lg py-3 px-5 bg-gray-100 inline-block text-center font-medium w-full" %>
+  <div class="flex flex-col md:flex-row mt-12 mb-12 items-center gap-y-2 xs:gap-x-2 sm:w-full">
+    <%= form.submit class: "btn btn-primary justify-self-center w-full md:w-1/2" %>
+    <%= link_to "Show portfolio", @portfolio, class: "link-button btn btn-secondary justify-self-center w-full md:w-1/2" %>
   </div>
 <% end %>
