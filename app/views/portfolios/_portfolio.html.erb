@@ -5,12 +5,14 @@
   <div class="prose xl:prose-lg max-w-none">
     <%= @portfolio.description %>
   </div>
-  <h2 class="text-xl xs:text-2xl lg:text-4xl font-semibold lg:font-medium mb-6 mt-6 xs:mb-12 xs:mt-12 lg:mb-24 lg:mt-24">
+  <h2 id="portfolio-items" class="text-xl xs:text-2xl lg:text-4xl font-semibold lg:font-medium mb-6 mt-6 xs:mb-12 xs:mt-12 lg:mb-24 lg:mt-24">
     Portfolio items
   </h2>
-  <% @portfolio.portfolio_items.each do |portfolio_item| %>
+  <%== pagy_nav(@pagy, fragment: '#portfolio-items') %>
+  <% @records.each do |portfolio_item| %>
     <div class="mt-4">
       <%= render partial: 'portfolio_items/portfolio_item_list_item', locals: { portfolio_item: portfolio_item } %>
     </div>
   <% end %>
+  <%== pagy_nav(@pagy, fragment: '#portfolio-items') %>
 </div>

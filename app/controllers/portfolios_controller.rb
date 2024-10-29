@@ -1,4 +1,5 @@
 class PortfoliosController < ApplicationController
+  include Pagy::Backend
   allow_unauthenticated_access only: %i[ show ]
   before_action :set_portfolio, only: %i[ show edit update ]
 
@@ -39,6 +40,7 @@ class PortfoliosController < ApplicationController
   end
 
   def show
+    @pagy, @records = pagy(PortfolioItem.where(portfolio_id: @portfolio.id))
     respond_to do |format|
       format.html
       format.json { render json: @portfolio }
