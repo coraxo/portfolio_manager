@@ -9,9 +9,12 @@
     <% else %>
       <%= render @portfolio_item %>
 
+    <div class="flex flex-col xs:flex-row mt-8 items-center gap-y-2 xs:gap-x-2 sm:w-4/5">
       <% if authenticated? && Current.session.user.id == @portfolio_item.portfolio.user.id %>
-        <%= link_to "Edit portfolio item", edit_portfolio_item_path(@portfolio_item), class: "link-button mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium text-center w-full xs:w-1/2" %>
-      <% end %>
+          <%= link_to "Edit portfolio item", edit_portfolio_item_path(@portfolio_item), class: "btn btn-primary link-button w-full xs:w-1/2" %>
+        <% end %>
+        <%= link_to "Back to portfolio", portfolio_path(@portfolio_item.portfolio), class: "btn btn-secondary link-button w-full xs:w-1/2" %>
+      </div>
     <% end %>
   </div>
 </div>

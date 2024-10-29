@@ -1,12 +1,17 @@
 <div id="<%= dom_id portfolio_item %>">
-  <h1 class="font-bold text-4xl"><%= @portfolio_item.title %></h1>
-  <p class="py-6"><%= @portfolio_item.description %></p>
-  <% if @portfolio_item.url.present? %>
-    <p>Visit the site:</p>
-    <a href="<%= @portfolio_item.url %>" target="_blank">Visit site</a>
-  <% end %>
-  <% if @portfolio_item.repository_url.present? %>
-    <p>Visit the repository:</p>
-    <a href="<%= @portfolio_item.repository_url %>" target="_blank">Visit repository</a>
-  <% end %>
+  <h1 class="text-2xl xs:text-4xl lg:text-6xl font-semibold lg:font-medium mb-6 mt-3 xs:mb-12 xs:mt-6 lg:mb-24 lg:mt-12">
+    <%= @portfolio_item.title %>
+  </h1>
+  <div class="prose xl:prose-lg max-w-none">
+    <%= @portfolio_item.description %>
+    <% if @portfolio_item.url.present? || @portfolio_item.repository_url.present? %>
+      <h2>Links</h2>
+    <% end %>
+    <% if @portfolio_item.url.present? %>
+      <p>Visit the site: <a href="<%= @portfolio_item.url %>" target="_blank">Visit site</a></p>
+    <% end %>
+    <% if @portfolio_item.repository_url.present? %>
+      <p>Visit the repository: <a href="<%= @portfolio_item.repository_url %>" target="_blank">Visit repository</a></p>
+    <% end %>
+  </div>
 </div>
