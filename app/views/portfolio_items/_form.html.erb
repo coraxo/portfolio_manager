@@ -47,7 +47,7 @@
       <span class="label-text text-lg">Full rich text description</span>
     </div>
   </label>
-  <%= form.rich_text_area :description %>
+  <%= form.rich_text_area :description, class: "prose max-w-none" %>
 
   <div class="flex flex-col md:flex-row mt-12 mb-12 items-center gap-y-2 xs:gap-x-2 sm:w-full">
     <%= form.submit class: "btn btn-primary justify-self-center w-full md:w-1/2" %>
