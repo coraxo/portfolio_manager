@@ -40,10 +40,17 @@ class PortfoliosController < ApplicationController
   end
 
   def show
-    @pagy, @records = pagy(PortfolioItem.where(portfolio_id: @portfolio.id))
-    respond_to do |format|
-      format.html
-      format.json { render json: @portfolio }
+    if !@portfolio
+      respond_to do |format|
+        format.html { redirect_to root_path }
+        format.json { render json: { 'error': "Profile not found" }, status: :not_found }
+      end
+    else
+      @pagy, @records = pagy(PortfolioItem.where(portfolio_id: @portfolio.id))
+      respond_to do |format|
+        format.html
+        format.json { render json: @portfolio }
+      end
     end
   end
 
@@ -78,7 +85,11 @@ class PortfoliosController < ApplicationController
   private
 
     def set_portfolio
-      @portfolio = Portfolio.find(params.expect(:id))
+      begin
+        @portfolio = Portfolio.find(params.expect(:id))
+      rescue
+        @portfolio = nil
+      end
     end
 
     def portfolio_params
