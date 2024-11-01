@@ -1,18 +1,18 @@
-<div id="<%= dom_id portfolio %>">
-  <h1 class="text-2xl xs:text-4xl lg:text-6xl font-semibold lg:font-medium mb-6 mt-3 xs:mb-12 xs:mt-6 lg:mb-24 lg:mt-12">
+<div id="<%= dom_id portfolio %>" class="text-base-content">
+  <h1 class="text-2xl xs:text-4xl lg:text-6xl font-semibold lg:font-medium text-base-content mb-6 mt-3 xs:mb-12 xs:mt-6 lg:mb-24 lg:mt-12">
     <%= @portfolio.title %>
   </h1>
   <div class="prose xl:prose-lg max-w-none">
     <%= @portfolio.description %>
   </div>
-  <h2 id="portfolio-items" class="text-xl xs:text-2xl lg:text-4xl font-semibold lg:font-medium mb-6 mt-6 xs:mb-12 xs:mt-12 lg:mb-24 lg:mt-24">
+  <h2 id="portfolio-items" class="text-xl xs:text-2xl lg:text-4xl font-semibold lg:font-medium text-base-content mb-6 mt-6 xs:mb-12 xs:mt-12 lg:mb-24 lg:mt-24">
     Portfolio items
   </h2>
-  <%== pagy_nav(@pagy, fragment: '#portfolio-items') %>
-  <% @records.each do |portfolio_item| %>
-    <div class="mt-4">
+  <div class=""><%== pagy_nav(@pagy, fragment: '#portfolio-items') %></div>
+  <div>
+    <% @records.each do |portfolio_item| %>
       <%= render partial: 'portfolio_items/portfolio_item_list_item', locals: { portfolio_item: portfolio_item } %>
-    </div>
-  <% end %>
-  <%== pagy_nav(@pagy, fragment: '#portfolio-items') %>
+    <% end %>
+  </div>
+  <div class="mt-6"><%== pagy_nav(@pagy, fragment: '#portfolio-items') %></div>
 </div>
