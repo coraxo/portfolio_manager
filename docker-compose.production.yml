@@ -26,7 +26,7 @@ services:
     networks:
       - app_network
     volumes:
-      - /home/portfolio-manager/storage:/app/storage
+      - /home/portfolio-manager/storage:/rails/storage
 
 networks:
   app_network:
