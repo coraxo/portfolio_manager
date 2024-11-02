@@ -12,7 +12,7 @@
   <% end %>
 
   <% if user.created_at %>
-
+    <%= form.file_field :avatar, class: "file-input file-input-bordered file-input-primary w-full max-w-xs" %>
   <% else %>
     <div class="w-full sm:w-4/5">
       <%= form.email_field :email_address, required: true, autofocus: true, autocomplete: "username", placeholder: "Enter your email address", value: user.email_address || params[:email_address], class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-6 w-full" %>

@@ -4,6 +4,35 @@
   </h1>
   <div class="prose xl:prose-lg max-w-none">
     <%= @portfolio_item.description %>
+  </div>
+
+  <% if @portfolio_item.images.attached? %>
+    <h2 class="text-xl xs:text-2xl lg:text-4xl font-semibold lg:font-medium mb-6 mt-6 xs:mb-12 xs:mt-12 lg:mb-20 lg:mt-24">
+      Images
+    </h2>
+    <div class="carousel w-full">
+      <% @portfolio_item.images.each_with_index do |image, index| %>
+        <div id="slide<%= index + 1 %>" class="carousel-item relative w-full">
+          <%= image_tag image.variant(resize_to_fit: [800, nil]), class: "w-full object-contain cursor-pointer", onclick: "openModal('#{rails_blob_url(image)}')" %>
+          <div class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
+            <a href="#slide<%= index.zero? ? @portfolio_item.images.length : index %>" class="btn btn-circle" data-turbo="false">❮</a>
+            <a href="#slide<%= index + 2 > @portfolio_item.images.length ? 1 : index + 2 %>" class="btn btn-circle" data-turbo="false">❯</a>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <div id="imageModal" class="modal" onclick="closeModal()">
+    <div class="modal-box w-full w-11/12 max-w-7xl mx-auto flex flex-col items-center">
+      <img id="modalImage" src="" alt="Full Size" class="max-w-full h-auto" />
+      <div class="modal-action w-full flex justify-end mt-4">
+        <a href="#" class="btn btn-secondary link-button">Close</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="prose xl:prose-lg max-w-none">
     <% if @portfolio_item.url.present? || @portfolio_item.repository_url.present? %>
       <h2>Links</h2>
     <% end %>
@@ -15,3 +44,23 @@
     <% end %>
   </div>
 </div>
+
+<script>
+  function openModal(imageUrl) {
+    const modal = document.getElementById('imageModal');
+    const modalImage = document.getElementById('modalImage');
+
+    modalImage.src = imageUrl;
+    modal.classList.add('modal-open');
+  }
+
+  function closeModal() {
+    const modal = document.getElementById('imageModal');
+    modal.classList.remove('modal-open');
+  }
+
+  document.querySelector('.modal-action a').addEventListener('click', function(event) {
+    event.preventDefault();
+    closeModal();
+  });
+</script>

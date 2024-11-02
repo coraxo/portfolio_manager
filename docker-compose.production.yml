@@ -25,6 +25,8 @@ services:
       - db
     networks:
       - app_network
+    volumes:
+      - /home/portfolio-manager/storage:/app/storage
 
 networks:
   app_network:

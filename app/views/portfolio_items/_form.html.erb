@@ -49,6 +49,19 @@
   </label>
   <%= form.rich_text_area :description, class: "prose max-w-none" %>
 
+  <% portfolio_item.images.each do |image| %>
+    <%= form.hidden_field :images, multiple: true, value: image.signed_id %>
+  <% end %>
+
+  <label class="form-control w-full max-w-md mt-8">
+    <div class="label">
+      <span class="label-text">Screenshots or other images</span>
+    </div>
+    <div class="w-full sm:w-4/5">
+      <%= form.file_field :images, multiple: true, class: "file-input file-input-bordered file-input-primary w-full max-w-xs" %>
+    </div>
+  </label>
+
   <div class="flex flex-col md:flex-row mt-12 mb-12 items-center gap-y-2 xs:gap-x-2 sm:w-full">
     <%= form.submit class: "btn btn-primary justify-self-center w-full md:w-1/2" %>
     <%= link_to "Show portfolio", @portfolio, class: "link-button btn btn-secondary justify-self-center w-full md:w-1/2" %>
