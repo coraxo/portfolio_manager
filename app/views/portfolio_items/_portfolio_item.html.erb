@@ -14,9 +14,9 @@
       <% @portfolio_item.images.each_with_index do |image, index| %>
         <div id="slide<%= index + 1 %>" class="carousel-item relative w-full">
           <%= image_tag image.variant(resize_to_fit: [800, nil]), class: "w-full object-contain cursor-pointer", onclick: "openModal('#{rails_blob_url(image)}')" %>
-          <div class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-            <a href="#slide<%= index.zero? ? @portfolio_item.images.length : index %>" class="btn btn-circle" data-turbo="false">❮</a>
-            <a href="#slide<%= index + 2 > @portfolio_item.images.length ? 1 : index + 2 %>" class="btn btn-circle" data-turbo="false">❯</a>
+          <div class="absolute left-2 md:left-4 right-2 md:right-4 top-1/2 flex -translate-y-1/2 transform justify-between">
+            <a href="#slide<%= index.zero? ? @portfolio_item.images.length : index %>" class="btn btn-circle max-sm:btn-sm link-button" data-turbo="false">❮</a>
+            <a href="#slide<%= index + 2 > @portfolio_item.images.length ? 1 : index + 2 %>" class="btn btn-circle max-sm:btn-sm link-button" data-turbo="false">❯</a>
           </div>
         </div>
       <% end %>
@@ -24,7 +24,7 @@
   <% end %>
 
   <div id="imageModal" class="modal" onclick="closeModal()">
-    <div class="modal-box w-full w-11/12 max-w-7xl mx-auto flex flex-col items-center">
+    <div class="modal-box w-full w-11/12 max-w-7xl mx-auto p-0 md:p-4 rounded-none md:rounded-md flex flex-col items-center">
       <img id="modalImage" src="" alt="Full Size" class="max-w-full h-auto" />
       <div class="modal-action w-full flex justify-end mt-4">
         <a href="#" class="btn btn-secondary link-button">Close</a>
@@ -32,15 +32,17 @@
     </div>
   </div>
 
-  <div class="prose xl:prose-lg max-w-none">
+  <div class="prose xl:prose-lg max-w-none mt-12 md:mt-18">
     <% if @portfolio_item.url.present? || @portfolio_item.repository_url.present? %>
       <h2>Links</h2>
-    <% end %>
-    <% if @portfolio_item.url.present? %>
-      <p>Visit the site: <a href="<%= @portfolio_item.url %>" target="_blank">Visit site</a></p>
-    <% end %>
-    <% if @portfolio_item.repository_url.present? %>
-      <p>Visit the repository: <a href="<%= @portfolio_item.repository_url %>" target="_blank">Visit repository</a></p>
+      <ul>
+      <% if @portfolio_item.url.present? %>
+        <li>Visit the site: <a href="<%= @portfolio_item.url %>" target="_blank">Visit site</a></li>
+      <% end %>
+      <% if @portfolio_item.repository_url.present? %>
+        <li>Visit the repository: <a href="<%= @portfolio_item.repository_url %>" target="_blank">Visit repository</a></li>
+      <% end %>
+      </ul>
     <% end %>
   </div>
 </div>
