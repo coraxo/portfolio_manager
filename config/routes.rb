@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get "/cookie-consent", to: "cookies#consent"
   post "/cookie-consent", to: "cookies#consent"
   post "/reset-cookie-consent", to: "cookies#reset_consent"
+  get "/about", to: "welcome#about"
   resource :session
   resources :passwords, param: :token
   resources :users, except: [ :index, :destroy ]
