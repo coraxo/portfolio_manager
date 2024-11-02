@@ -1,6 +1,5 @@
 class CookiesController < ApplicationController
   def index
-    #session[:cookie_consent] = nil
   end
 
   def consent
