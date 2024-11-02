@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get "/tracking-info", to: "cookies#index"
+  get "/cookie-consent", to: "cookies#consent"
+  post "/cookie-consent", to: "cookies#consent"
+  post "/reset-cookie-consent", to: "cookies#reset_consent"
   resource :session
   resources :passwords, param: :token
   resources :users, except: [ :index, :destroy ]

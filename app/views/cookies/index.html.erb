@@ -1,0 +1,12 @@
+<div class="prose">
+  <h1>Cookie and tracking information</h1>
+  <p>
+    This site only uses a session cookie in order to provide basic functionality.
+    No ad or tracking cookies are used. Declining cookies will prevent the session
+    cookie from being set. This will prevent the site from functioning correctly.
+    If you have previously declined cookies, you can accept them again by clicking
+    the button below. You may also decline cookies if you have previously accepted
+    them.
+  </p>
+  <%= button_to "Reset cookie consent", reset_cookie_consent_path, class: "btn btn-primary", data: { turbo_frame: "cookie_consent_banner" }, method: :post %>
+</div>

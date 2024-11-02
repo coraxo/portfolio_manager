@@ -29,5 +29,6 @@
       <%= yield %>
     </main>
     <%= render 'shared/footer' %>
+    <%= turbo_frame_tag :cookie_consent_banner, src: cookie_consent_path %>
   </body>
 </html>
