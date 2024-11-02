@@ -7,5 +7,5 @@ class PortfolioItem < ApplicationRecord
   validates :title, presence: true
   validates :url, presence: true
   validates :repository_url, presence: true
-  validates :images, content_type: ['image/png', 'image/jpg', 'image/jpeg'], limit: { max: 10 }, size: { less_than: 5.megabytes }
+  validates :images, content_type: [ "image/png", "image/jpg", "image/jpeg" ], limit: { max: 10 }, size: { less_than: 5.megabytes }
 end
